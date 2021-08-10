@@ -33,10 +33,31 @@ module.exports = {
       if (!valid) {
         res.status(400).sent({error: msn});
       }
-      const {name, sku, description, price, brand, tag} = req.body;
+      const {name, description, price, brand, tag} = req.body;
       const product = new BD.ProductClass();
       product.set("name", name);
-      product.set("sku", sku);
+      product.set("description", description);
+      product.set("price", price);
+      product.set("brand", brand);
+      product.set("tag", tag);
+      product.set("active", true);
+      const result = await product.save();
+      res.status(200).send(result);
+    } catch (error) {
+      res.status(400).send(error.message);
+    }
+  },
+
+  updateProduct: async (req, res) => {
+    try {
+      const id = req.params.id;
+      const {valid, msn} = validator.product(req.body);
+      if (!valid) {
+        res.status(400).sent({error: msn});
+      }
+      const {name, description, price, brand, tag} = req.body;
+      const product = BD.ProductClass.createWithoutData(id);
+      product.set("name", name);
       product.set("description", description);
       product.set("price", price);
       product.set("brand", brand);
