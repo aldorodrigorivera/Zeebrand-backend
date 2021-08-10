@@ -6,7 +6,7 @@ module.exports = {
     const {email, password, name} = form;
     const validEmail = "/\S+@\S+\.\S+/";
 
-    if (!email || !validEmail.test(email)) {
+    if (!email || validEmail.match(email)) {
       return {valid: false, msn: "Write a valid email address"};
     }
     if (!password || password.length < 4) {

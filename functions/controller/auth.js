@@ -15,19 +15,20 @@ module.exports = {
       const token = await jwt.getToken(user);
       res.status(200).send(token);
     } catch (error) {
-      res.status(401).send(error);
+      res.status(401).send(error.message);
     }
   },
 
   singUp: async (req, res) => {
     try {
-      const {valid, msn} = validator.validSingUp(req.body);
+      const {valid, msn} = validator.singUp(req.body);
       if (!valid) {
         return res.status(400).send(msn);
       }
       const {email, password, name} = req.body;
       const register = new Parse.User();
       register.set("name", name);
+      register.set("username", email);
       register.set("password", password);
       register.set("email", email);
       const user = await register.signUp();
@@ -35,16 +36,16 @@ module.exports = {
       const token = await jwt.getToken(user);
       res.status(200).send({user, token});
     } catch (error) {
-      res.status(400).send(error);
+      res.status(400).send(error.message);
     }
   },
 
-  logout: async (req, res) => {
+  logOut: async (req, res) => {
     try {
       const user = await Parse.User.logOut();
       res.status(200).send(user);
     } catch (error) {
-      res.status(400).send(error);
+      res.status(400).send(error.message);
     }
   },
 };
