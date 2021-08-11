@@ -1,4 +1,6 @@
 /* eslint-disable no-undef */
+// This cloud function is located in a parse-server instance
+// I added this code here to keep it in Github
 
 const twilioSID = process.env.TWILIO_SID;
 const twilioTOKEN = process.env.TWILIO_TOKEN;

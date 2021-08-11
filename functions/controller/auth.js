@@ -15,7 +15,7 @@ module.exports = {
       const token = await jwt.getToken(user);
       res.status(200).send(token);
     } catch (error) {
-      res.status(401).send(error.message);
+      res.status(401).send({error});
     }
   },
 
@@ -36,7 +36,7 @@ module.exports = {
       const token = await jwt.getToken(user);
       res.status(200).send({user, token});
     } catch (error) {
-      res.status(400).send(error.message);
+      res.status(400).send({error});
     }
   },
 
@@ -45,7 +45,7 @@ module.exports = {
       const user = await Parse.User.logOut();
       res.status(200).send(user);
     } catch (error) {
-      res.status(400).send(error.message);
+      res.status(400).send({error});
     }
   },
 };

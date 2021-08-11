@@ -2,7 +2,6 @@
 const BD = require("../config");
 const Parse = BD.initializeParse();
 const validator = require("../validator/products");
-
 module.exports = {
 
   isMe: async (req, res) => {
@@ -12,7 +11,7 @@ module.exports = {
       const user = await query.get(id);
       res.status(200).send(user);
     } catch (error) {
-      res.status(500).send(error.message);
+      res.status(400).send({error});
     }
   },
 
@@ -23,7 +22,7 @@ module.exports = {
       const products = await query.find();
       res.status(200).send(products);
     } catch (error) {
-      res.status(500).send(error.message);
+      res.status(400).send({error});
     }
   },
 
@@ -33,18 +32,19 @@ module.exports = {
       if (!valid) {
         res.status(400).sent({error: msn});
       }
-      const {name, description, price, brand, tag} = req.body;
+      const {name, price, brand, tag, url} = req.body;
       const product = new BD.ProductClass();
       product.set("name", name);
-      product.set("description", description);
       product.set("price", price);
       product.set("brand", brand);
+      product.set("url", url);
       product.set("tag", tag);
       product.set("active", true);
       const result = await product.save();
       res.status(200).send(result);
     } catch (error) {
-      res.status(400).send(error.message);
+      console.log(error.message);
+      res.status(400).send({error});
     }
   },
 
@@ -55,18 +55,18 @@ module.exports = {
       if (!valid) {
         res.status(400).sent({error: msn});
       }
-      const {name, description, price, brand, tag} = req.body;
+      const {name, price, brand, tag, active, url} = req.body;
       const product = BD.ProductClass.createWithoutData(id);
       product.set("name", name);
-      product.set("description", description);
       product.set("price", price);
       product.set("brand", brand);
       product.set("tag", tag);
-      product.set("active", true);
+      product.set("url", url);
+      product.set("active", active);
       const result = await product.save();
       res.status(200).send(result);
     } catch (error) {
-      res.status(400).send(error.message);
+      res.status(400).send({error});
     }
   },
 
@@ -77,7 +77,7 @@ module.exports = {
       const product = await query.get(id);
       res.status(200).send(product);
     } catch (error) {
-      res.status(400).send(error.message);
+      res.status(400).send({error});
     }
   },
 
@@ -89,7 +89,7 @@ module.exports = {
       const result = await product.save();
       res.status(200).send(result);
     } catch (error) {
-      res.status(400).send(error.message);
+      res.status(400).send({error});
     }
   },
 };
