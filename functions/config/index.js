@@ -10,4 +10,5 @@ module.exports = {
   },
 
   UserClass: Parse.Object.extend("User"),
+  ProductClass: Parse.Object.extend("Catalog"),
 };
