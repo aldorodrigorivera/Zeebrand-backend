@@ -13,7 +13,7 @@ module.exports = {
       }
       const user = await Parse.User.logIn(email, password);
       const token = await jwt.getToken(user);
-      res.status(200).send(token);
+      res.status(200).send({user, token});
     } catch (error) {
       res.status(401).send({error});
     }
