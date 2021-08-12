@@ -7,8 +7,8 @@ const twilioTOKEN = process.env.TWILIO_TOKEN;
 const twilioFROM = process.env.TWILIO_PHONE;
 const client = require("twilio")(twilioSID, twilioTOKEN);
 
-Parse.Cloud.beforeSave(("Product"), async (request) => {
-  const query = new Parse.Query("Product");
+Parse.Cloud.beforeSave(("Catalog"), async (request) => {
+  const query = new Parse.Query("Catalog");
   const product = await query.get(request.object.id);
   // Just in case the product price is changed
   if (product.get("price") !== request.object.get("price")) {

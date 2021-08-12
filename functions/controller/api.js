@@ -19,6 +19,7 @@ module.exports = {
     try {
       const query = new Parse.Query(BD.ProductClass);
       query.addAscending("createdAt");
+      query.equalTo("active", true);
       const products = await query.find();
       res.status(200).send(products);
     } catch (error) {
