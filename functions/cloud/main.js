@@ -18,7 +18,8 @@ Parse.Cloud.beforeSave(("Catalog"), async (request) => {
     // All admins user will receive messages notification
     const phones = users.map((user) => user.get("phone"));
     client.messages.create({
-      body: `El precio del producto con SKU: ${product.id} ha sido actualizado`,
+      body: `El precio del producto con SKU: ${product.id} ha sido actualizado,
+      pasó de $${request.object.get("price")}MXN - $${product.price}MXN`,
       from: twilioFROM,
       to: phones,
     }).then((message) => console.log("Mensaje enviados a:", phones))
