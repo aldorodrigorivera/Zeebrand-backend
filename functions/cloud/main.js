@@ -18,7 +18,7 @@ Parse.Cloud.beforeSave(("Catalog"), async (request) => {
     // All admins user will receive messages notification
     const phones = users.map((user) => user.get("phone"));
     client.messages.create({
-      body: `El producto con SKU: ${product.id} (${products.name}) 
+      body: `El producto con SKU: ${product.id} (${product.name}) 
       ha sido actualizado, pasando de 
       $${request.object.get("price")}MXN - $${product.price}MXN`,
       from: twilioFROM,
