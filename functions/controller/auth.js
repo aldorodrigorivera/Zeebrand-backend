@@ -25,11 +25,13 @@ module.exports = {
       if (!valid) {
         return res.status(400).send(msn);
       }
-      const {email, password, name} = req.body;
+      const {email, password, name, phone} = req.body;
       const register = new Parse.User();
       register.set("name", name);
       register.set("username", email);
       register.set("password", password);
+      register.set("rol", "Admin");
+      register.set("phone", "+52"+phone);
       register.set("email", email);
       const user = await register.signUp();
 
