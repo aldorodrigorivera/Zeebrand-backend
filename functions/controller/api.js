@@ -41,10 +41,10 @@ module.exports = {
       product.set("url", url);
       product.set("tag", tag);
       product.set("active", true);
-      const result = await product.save();
+      const result = await product.save({useMasterKey: true});
       res.status(200).send(result);
     } catch (error) {
-      console.log(error.message);
+      console.log({error});
       res.status(400).send({error});
     }
   },
