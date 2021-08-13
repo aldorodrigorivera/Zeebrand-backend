@@ -31,7 +31,7 @@ module.exports = {
     try {
       const {valid, msn} = validator.product(req.body);
       if (!valid) {
-        res.status(400).sent({error: msn});
+        res.status(400).send({error: msn});
       }
       const {name, price, brand, tag, url} = req.body;
       const product = new BD.ProductClass();
@@ -54,7 +54,7 @@ module.exports = {
       const id = req.params.id;
       const {valid, msn} = validator.product(req.body);
       if (!valid) {
-        res.status(400).sent({error: msn});
+        res.status(400).send({error: msn});
       }
       const {name, price, brand, tag, active, url} = req.body;
       const product = BD.ProductClass.createWithoutData(id);

@@ -13,7 +13,7 @@ module.exports = {
     if (!brand || brand === "") {
       return {valid: false, msn: "Write product brand"};
     }
-    if (!tag || tag.length === 0) {
+    if (!tag) {
       return {valid: false, msn: "Write product tag"};
     }
     return {valid: true, msn: "OK"};
