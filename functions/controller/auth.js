@@ -9,13 +9,13 @@ module.exports = {
     try {
       const {email, password, audience} = req.body;
       if (!audience || audience !== process.env.AUDIENCE) {
-        return res.status(401).send("Incorrect audience");
+        return res.status(401).send({error: "Invalid audience"});
       }
       const user = await Parse.User.logIn(email, password);
       const token = await jwt.getToken(user);
       res.status(200).send({user, token});
     } catch (error) {
-      res.status(401).send({error});
+      res.status(401).send({error: error.message});
     }
   },
 
@@ -38,7 +38,7 @@ module.exports = {
       const token = await jwt.getToken(user);
       res.status(200).send({user, token});
     } catch (error) {
-      res.status(400).send({error});
+      res.status(400).send({error: error.message});
     }
   },
 
@@ -47,7 +47,7 @@ module.exports = {
       const user = await Parse.User.logOut();
       res.status(200).send(user);
     } catch (error) {
-      res.status(400).send({error});
+      res.status(400).send({error: error.message});
     }
   },
 };
