@@ -14,6 +14,7 @@ Dentro de las tecnologías usadas se encuentran las siguientes:
 - Parse Server [(Docs)](https://docs.parseplatform.org/js/guide/#signing-up "Here")
 - NodeJS
 - JWT
+- Twilio (Notificaciones SMS).
 
 Dentro de las herramientas usadas podrás encontrar a **Postman** donde se publicó toda la documentación relacionada al API del proyecto ([Docs](https://documenter.getpostman.com/view/2644356/Tzz4SKfR "Docs")).
 
