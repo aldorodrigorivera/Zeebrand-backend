@@ -11,7 +11,7 @@ En este repositorio se encuentra todo lo relacionado con el Backend. Este proyec
 
 Dentro de las tecnologías usadas se encuentran las siguientes:
 - ExpressJS
-- Parse Server [Docs](https://docs.parseplatform.org/js/guide/#signing-up "Here")
+- Parse Server [(Docs)](https://docs.parseplatform.org/js/guide/#signing-up "Here")
 - NodeJS
 - JWT
 
